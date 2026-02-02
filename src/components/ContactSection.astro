@@ -1,0 +1,69 @@
+---
+interface Props {
+  tel?: string;
+  email?: string;
+}
+
+const { 
+  tel = '0795-73-1185',
+  email = 'keyaki-k@theia.ocn.ne.jp'
+} = Astro.props;
+---
+
+<div class="contact-section" id="contact">
+  <div class="contact-title">■ CONTACT - 通信回線</div>
+  <p class="contact-intro">
+    ご質問・ご相談などがございましたら、<br>
+    お電話やメールフォームよりお受けしています。<br>
+    お気軽にお問い合わせください。
+  </p>
+  <div class="tel-number">
+    TEL: {tel}
+  </div>
+  <div class="contact-actions">
+    <a href={`mailto:${email}`} class="btn glitch">
+      &gt;&gt; メールでのお問い合わせ &lt;&lt;
+    </a>
+  </div>
+</div>
+
+<style>
+  .contact-section {
+    background: linear-gradient(180deg, rgba(0, 30, 0, 0.8) 0%, rgba(0, 20, 0, 0.9) 100%);
+    border: 1px solid var(--primary-green);
+    padding: 25px;
+    margin-bottom: 20px;
+  }
+
+  .contact-title {
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    color: var(--primary-green);
+    text-shadow: var(--glow);
+    margin-bottom: 15px;
+    text-align: center;
+  }
+
+  .contact-intro {
+    text-align: center;
+    color: #aaa;
+    margin-bottom: 20px;
+    line-height: 1.8;
+  }
+
+  .tel-number {
+    font-family: 'VT323', monospace;
+    font-size: 1.8em;
+    color: var(--primary-green);
+    text-shadow: var(--glow);
+    text-align: center;
+    padding: 15px;
+    border: 1px dashed var(--border-green);
+    margin-bottom: 15px;
+  }
+
+  .contact-actions {
+    text-align: center;
+    margin-top: 15px;
+  }
+</style>

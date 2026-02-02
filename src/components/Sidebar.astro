@@ -1,0 +1,199 @@
+---
+interface ProfileItem {
+  label: string;
+  value: string;
+}
+
+interface LinkItem {
+  label: string;
+  href: string;
+}
+
+interface StaffItem {
+  code: string;
+  title: string;
+  role: string;
+}
+
+interface Props {
+  profile?: ProfileItem[];
+  links?: LinkItem[];
+  staff?: StaffItem[];
+  address?: string;
+}
+
+const { 
+  profile = [
+    { label: '法人名', value: '社会福祉法人\n丹波柏原福祉会' },
+    { label: '代表者', value: '理事長 上山 知己' },
+    { label: '所在地', value: '〒669-3313\n兵庫県丹波市\n柏原町北山289-1' },
+    { label: '設立', value: '2003年' },
+    { label: '目的', value: '高齢者の幸せと\n地域福祉の充実' },
+  ],
+  links = [
+    { label: '事業所案内', href: '/clinic' },
+    { label: 'ショートステイ', href: '/stay' },
+    { label: 'デイサービス', href: '/day' },
+    { label: 'イベント・行事', href: '/event' },
+    { label: 'プライバシーポリシー', href: '/policy' },
+  ],
+  staff = [
+    { code: 'LAB-001', title: '理事長', role: '総指揮官' },
+    { code: 'LAB-002', title: '施設長', role: '作戦参謀' },
+    { code: 'LAB-003〜', title: '介護スタッフ', role: '実働部隊' },
+  ],
+  address = '兵庫県丹波市\n柏原町北山289-1\n\n※丹波地方の秘密基地'
+} = Astro.props;
+---
+
+<aside class="sidebar">
+  <!-- Profile Panel -->
+  <div class="panel">
+    <div class="panel-title">PROFILE</div>
+    {profile.map((item) => (
+      <div class="profile-item">
+        <div class="profile-label">{item.label}:</div>
+        <div class="profile-value" set:html={item.value.replace(/\n/g, '<br>')} />
+      </div>
+    ))}
+  </div>
+
+  <!-- Links Panel -->
+  <div class="panel">
+    <div class="panel-title">LINKS</div>
+    <ul class="link-list">
+      {links.map((link) => (
+        <li><a href={link.href}>{link.label}</a></li>
+      ))}
+    </ul>
+  </div>
+
+  <!-- Staff Panel -->
+  <div class="panel">
+    <div class="panel-title">STAFF</div>
+    {staff.map((member) => (
+      <div class="staff-item">
+        <div class="staff-code">{member.code}</div>
+        <div class="staff-title">{member.title}</div>
+        <div class="staff-role">{member.role}</div>
+      </div>
+    ))}
+  </div>
+
+  <!-- Access Panel -->
+  <div class="panel" id="access">
+    <div class="panel-title">ACCESS</div>
+    <div class="map-placeholder">
+      [ MAP LOADING... ]
+    </div>
+    <p class="address-text" set:html={address.replace(/\n/g, '<br>')} />
+  </div>
+
+  <!-- Under Construction -->
+  <div class="panel">
+    <div class="under-construction">
+      🚧 EXPANDING... 🚧
+    </div>
+  </div>
+</aside>
+
+<style>
+  .sidebar .panel {
+    font-size: 0.9em;
+  }
+
+  .profile-item {
+    margin-bottom: 15px;
+  }
+
+  .profile-label {
+    color: var(--primary-green);
+    font-family: 'VT323', monospace;
+    font-size: 1.1em;
+    margin-bottom: 5px;
+  }
+
+  .profile-value {
+    color: #aaa;
+    padding-left: 10px;
+    line-height: 1.6;
+  }
+
+  .link-list {
+    list-style: none;
+  }
+
+  .link-list li {
+    padding: 8px 0;
+    border-bottom: 1px dotted var(--border-green);
+  }
+
+  .link-list li:last-child {
+    border-bottom: none;
+  }
+
+  .link-list a {
+    color: var(--primary-green);
+    text-decoration: none;
+    transition: all 0.3s;
+  }
+
+  .link-list a:hover {
+    text-shadow: var(--glow);
+  }
+
+  .link-list a::before {
+    content: '→';
+    margin-right: 8px;
+  }
+
+  .staff-item {
+    margin-bottom: 15px;
+  }
+
+  .staff-item:last-child {
+    margin-bottom: 0;
+  }
+
+  .staff-code {
+    color: var(--accent-yellow);
+    font-family: 'VT323', monospace;
+    font-size: 0.9em;
+  }
+
+  .staff-title {
+    color: #ddd;
+    font-size: 1.1em;
+  }
+
+  .staff-role {
+    color: var(--text-dim);
+    font-size: 0.85em;
+  }
+
+  .map-placeholder {
+    background: #000;
+    border: 1px solid var(--border-green);
+    height: 150px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: var(--text-dim);
+    font-family: 'VT323', monospace;
+    margin-bottom: 10px;
+  }
+
+  .address-text {
+    font-size: 0.8em;
+    color: var(--text-dim);
+    line-height: 1.6;
+  }
+
+  .under-construction {
+    text-align: center;
+    padding: 15px;
+    font-family: 'VT323', monospace;
+    color: var(--accent-yellow);
+    font-size: 1em;
+  }
+</style>

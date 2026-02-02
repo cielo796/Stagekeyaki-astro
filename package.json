@@ -1,0 +1,16 @@
+{
+  "name": "keyaki-gadget-laboratory",
+  "type": "module",
+  "version": "1.0.0",
+  "description": "柏原けやき苑 - 未来介護ガジェット研究所風ウェブサイト",
+  "scripts": {
+    "dev": "astro dev",
+    "start": "astro dev",
+    "build": "astro build",
+    "preview": "astro preview",
+    "astro": "astro"
+  },
+  "dependencies": {
+    "astro": "^4.16.0"
+  }
+}

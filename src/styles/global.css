@@ -1,0 +1,245 @@
+/* ========================================
+   未来ガジェット研究所風グローバルスタイル
+   ======================================== */
+
+@import url('https://fonts.googleapis.com/css2?family=VT323&family=Zen+Kaku+Gothic+New:wght@400;700&display=swap');
+
+:root {
+  --primary-green: #00ff41;
+  --dark-green: #003b00;
+  --bg-dark: #0a0a0a;
+  --bg-panel: #111;
+  --text-dim: #7a7a7a;
+  --border-green: #1a3a1a;
+  --accent-yellow: #ffcc00;
+  --accent-red: #ff4141;
+  --glow: 0 0 10px rgba(0, 255, 65, 0.5);
+  --glow-strong: 0 0 20px rgba(0, 255, 65, 0.8);
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  background: var(--bg-dark);
+  color: var(--primary-green);
+  font-family: 'Zen Kaku Gothic New', sans-serif;
+  min-height: 100vh;
+  overflow-x: hidden;
+  line-height: 1.8;
+}
+
+/* CRT scanline effect */
+body::before {
+  content: '';
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: repeating-linear-gradient(
+    0deg,
+    rgba(0, 0, 0, 0.15),
+    rgba(0, 0, 0, 0.15) 1px,
+    transparent 1px,
+    transparent 2px
+  );
+  pointer-events: none;
+  z-index: 1000;
+}
+
+/* ========================================
+   Animations
+   ======================================== */
+
+@keyframes flicker {
+  0%, 100% { opacity: 1; }
+  92% { opacity: 1; }
+  93% { opacity: 0.8; }
+  94% { opacity: 1; }
+  97% { opacity: 0.9; }
+  98% { opacity: 1; }
+}
+
+@keyframes blink {
+  0%, 50% { opacity: 1; }
+  51%, 100% { opacity: 0; }
+}
+
+@keyframes pulse {
+  0%, 100% { text-shadow: var(--glow); }
+  50% { text-shadow: var(--glow-strong); }
+}
+
+@keyframes marquee {
+  0% { transform: translateX(100%); }
+  100% { transform: translateX(-100%); }
+}
+
+@keyframes glitch {
+  0% { transform: translate(0); }
+  20% { transform: translate(-1px, 1px); }
+  40% { transform: translate(-1px, -1px); }
+  60% { transform: translate(1px, 1px); }
+  80% { transform: translate(1px, -1px); }
+  100% { transform: translate(0); }
+}
+
+@keyframes typing {
+  from { width: 0; }
+  to { width: 100%; }
+}
+
+/* ========================================
+   Utility Classes
+   ======================================== */
+
+.container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 20px;
+  animation: flicker 5s infinite;
+}
+
+.text-glow {
+  text-shadow: var(--glow);
+}
+
+.text-pulse {
+  animation: pulse 3s infinite;
+}
+
+.glitch:hover {
+  animation: glitch 0.3s ease-in-out infinite;
+}
+
+.dramatic {
+  color: var(--primary-green);
+  font-weight: bold;
+}
+
+.text-dim {
+  color: var(--text-dim);
+}
+
+.text-yellow {
+  color: var(--accent-yellow);
+}
+
+.text-red {
+  color: var(--accent-red);
+}
+
+.font-terminal {
+  font-family: 'VT323', monospace;
+}
+
+/* ========================================
+   Panel Styles
+   ======================================== */
+
+.panel {
+  background: var(--bg-panel);
+  border: 1px solid var(--border-green);
+  padding: 18px;
+  margin-bottom: 20px;
+}
+
+.panel-title {
+  font-family: 'VT323', monospace;
+  font-size: 1.4em;
+  border-bottom: 1px dashed var(--primary-green);
+  padding-bottom: 10px;
+  margin-bottom: 15px;
+  text-shadow: var(--glow);
+}
+
+.panel-title::before {
+  content: '■ ';
+}
+
+/* ========================================
+   Links
+   ======================================== */
+
+a {
+  color: var(--primary-green);
+  text-decoration: none;
+  transition: all 0.3s;
+}
+
+a:hover {
+  text-shadow: var(--glow);
+  color: #fff;
+}
+
+/* ========================================
+   Buttons
+   ======================================== */
+
+.btn {
+  display: inline-block;
+  background: transparent;
+  border: 2px solid var(--primary-green);
+  color: var(--primary-green);
+  padding: 12px 30px;
+  font-family: 'VT323', monospace;
+  font-size: 1.1em;
+  text-decoration: none;
+  transition: all 0.3s;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background: var(--primary-green);
+  color: var(--bg-dark);
+  box-shadow: var(--glow);
+}
+
+/* ========================================
+   Status Badges
+   ======================================== */
+
+.status {
+  display: inline-block;
+  padding: 3px 10px;
+  font-family: 'VT323', monospace;
+  font-size: 0.85em;
+  border: 1px solid;
+}
+
+.status-active {
+  color: var(--primary-green);
+  border-color: var(--primary-green);
+}
+
+.status-special {
+  color: var(--accent-yellow);
+  border-color: var(--accent-yellow);
+}
+
+.status-classified {
+  color: var(--accent-red);
+  border-color: var(--accent-red);
+}
+
+/* ========================================
+   Responsive
+   ======================================== */
+
+@media (max-width: 768px) {
+  .container {
+    padding: 15px;
+  }
+  
+  .panel {
+    padding: 15px;
+  }
+}

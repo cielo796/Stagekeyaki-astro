@@ -1,0 +1,83 @@
+---
+interface Props {
+  title?: string;
+}
+
+const { title = 'GREETING - 所長挨拶' } = Astro.props;
+---
+
+<div class="panel" id="about">
+  <div class="panel-title">{title}</div>
+  <div class="welcome-msg">
+    <p>
+      このサイトにたどり着いたということは、君もまた<span class="dramatic">「介護」</span>という使命に目覚めた同志だろう。
+      フゥーハハハ！よくぞ来た！
+    </p>
+    <p>
+      近年、丹波地方の高齢化は急速に進展し、<span class="dramatic">34%</span>にも達しようとしている。
+      高齢化は誰もが避けて通れない道だけに、老人福祉の充実は大きな課題になっている。
+    </p>
+    <p>
+      老後の生きがいは<span class="dramatic">健康で生活の豊かさが実感でき、幸せに暮らせること</span>にあり、
+      これは世代を超えた私ども一人ひとりの願いでもあると思う。
+    </p>
+    <p>
+      とりわけ在宅介護・施設介護の果たす役割は、きわめて大なるものがある。
+      私どもは「<span class="dramatic">住み慣れたふるさとは心地よく温かい</span>」と感じる
+      丹波風土の醸成に努めると共に、地域の方々とも交流を深め、共に励まし合いながら、
+      明るく豊かで味わいのある人生が送れるような施設づくりをして参りたいと心に誓っている。
+    </p>
+    <p class="small">
+      ※当施設は真面目な社会福祉法人です。世界征服は目指していません。
+    </p>
+  </div>
+</div>
+
+<div class="warning-box">
+  <div class="title">⚡ MISSION STATEMENT ⚡</div>
+  <div class="warning-text">
+    我々「柏原けやき苑」は、高齢者の幸せを守るべく<br>
+    日夜ケアサービスの研究開発に勤しむ組織である。<br>
+    <span class="dramatic">El Psy Kongroo.</span>
+  </div>
+</div>
+
+<style>
+  .welcome-msg {
+    font-size: 0.95em;
+    line-height: 2;
+    color: #ccc;
+  }
+
+  .welcome-msg p {
+    margin-bottom: 15px;
+    text-indent: 1em;
+  }
+
+  .welcome-msg .small {
+    font-size: 0.85em;
+    color: var(--text-dim);
+  }
+
+  .warning-box {
+    background: rgba(0, 100, 0, 0.2);
+    border: 1px solid var(--dark-green);
+    padding: 20px;
+    margin: 20px 0;
+    text-align: center;
+  }
+
+  .warning-box .title {
+    color: var(--primary-green);
+    font-family: 'VT323', monospace;
+    font-size: 1.3em;
+    margin-bottom: 10px;
+    text-shadow: var(--glow);
+  }
+
+  .warning-text {
+    font-size: 0.9em;
+    color: #aaa;
+    line-height: 1.8;
+  }
+</style>

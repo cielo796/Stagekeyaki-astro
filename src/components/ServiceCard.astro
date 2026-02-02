@@ -1,0 +1,100 @@
+---
+export interface Service {
+  number: string;
+  name: string;
+  codeName: string;
+  description: string;
+  status: 'active' | 'special' | 'classified';
+  href?: string;
+}
+
+interface Props {
+  service: Service;
+}
+
+const { service } = Astro.props;
+
+const statusLabels = {
+  active: '稼働中',
+  special: '特殊仕様',
+  classified: '機密',
+};
+---
+
+<a href={service.href || '#'} class="service-card">
+  <div class="service-num">GADGET-{service.number}</div>
+  <div class="service-name">{service.name}</div>
+  <div class="service-code">CODE NAME: "{service.codeName}"</div>
+  <div class="service-desc">{service.description}</div>
+  <span class={`service-status status-${service.status}`}>
+    [{statusLabels[service.status]}]
+  </span>
+</a>
+
+<style>
+  .service-card {
+    display: block;
+    background: rgba(0, 30, 0, 0.5);
+    border: 1px solid var(--border-green);
+    padding: 20px;
+    transition: all 0.3s;
+    cursor: pointer;
+    text-decoration: none;
+  }
+
+  .service-card:hover {
+    border-color: var(--primary-green);
+    box-shadow: 0 0 15px rgba(0, 255, 65, 0.3);
+  }
+
+  .service-num {
+    font-family: 'VT323', monospace;
+    font-size: 0.9em;
+    color: var(--accent-yellow);
+    margin-bottom: 8px;
+  }
+
+  .service-name {
+    font-family: 'VT323', monospace;
+    font-size: 1.3em;
+    color: var(--primary-green);
+    margin-bottom: 10px;
+    text-shadow: var(--glow);
+  }
+
+  .service-code {
+    font-size: 0.8em;
+    color: var(--text-dim);
+    margin-bottom: 10px;
+  }
+
+  .service-desc {
+    font-size: 0.85em;
+    color: #aaa;
+    line-height: 1.6;
+  }
+
+  .service-status {
+    display: inline-block;
+    margin-top: 12px;
+    padding: 3px 10px;
+    font-family: 'VT323', monospace;
+    font-size: 0.85em;
+    border: 1px solid;
+  }
+
+  .status-active {
+    color: var(--primary-green);
+    border-color: var(--primary-green);
+  }
+
+  .status-special {
+    color: var(--accent-yellow);
+    border-color: var(--accent-yellow);
+  }
+
+  .status-classified {
+    color: var(--accent-red);
+    border-color: var(--accent-red);
+  }
+</style>

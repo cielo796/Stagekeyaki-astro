@@ -1,0 +1,66 @@
+---
+interface NavItem {
+  label: string;
+  href: string;
+}
+
+interface Props {
+  items?: NavItem[];
+}
+
+const { items = [
+  { label: 'TOP', href: '#top' },
+  { label: 'ABOUT', href: '#about' },
+  { label: 'SERVICES', href: '#services' },
+  { label: 'CONTACT', href: '#contact' },
+  { label: 'ACCESS', href: '#access' },
+  { label: 'EVENT', href: '/event' },
+] } = Astro.props;
+---
+
+<nav class="navigation">
+  {items.map((item) => (
+    <a href={item.href}>{item.label}</a>
+  ))}
+</nav>
+
+<style>
+  .navigation {
+    background: var(--bg-panel);
+    border: 1px solid var(--border-green);
+    padding: 12px;
+    margin-bottom: 20px;
+    text-align: center;
+  }
+
+  .navigation a {
+    color: var(--primary-green);
+    text-decoration: none;
+    margin: 0 12px;
+    font-size: 0.9em;
+    transition: all 0.3s;
+  }
+
+  .navigation a:hover {
+    text-shadow: var(--glow);
+    color: #fff;
+  }
+
+  .navigation a::before {
+    content: '>';
+    margin-right: 3px;
+    opacity: 0;
+    transition: opacity 0.3s;
+  }
+
+  .navigation a:hover::before {
+    opacity: 1;
+  }
+
+  @media (max-width: 768px) {
+    .navigation a {
+      display: block;
+      margin: 10px 0;
+    }
+  }
+</style>

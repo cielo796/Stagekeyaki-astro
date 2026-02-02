@@ -1,0 +1,42 @@
+---
+interface Props {
+  messages?: string[];
+}
+
+const { messages = [
+  '利用者様に満足していただける介護サービスをご提供します',
+  '機関の監視をかいくぐり、高齢者の幸せを守る秘密結社として活動中',
+  '新規入所相談受付中',
+  'TEL: 0795-73-1185',
+] } = Astro.props;
+
+const displayText = messages.map(msg => `★☆★ ${msg}`).join(' ');
+---
+
+<div class="marquee-container">
+  <div class="marquee-text">
+    {displayText} ★☆★
+  </div>
+</div>
+
+<style>
+  .marquee-container {
+    overflow: hidden;
+    background: var(--bg-panel);
+    border: 1px solid var(--border-green);
+    padding: 10px 0;
+    margin-bottom: 20px;
+  }
+
+  .marquee-text {
+    display: inline-block;
+    white-space: nowrap;
+    animation: marquee 25s linear infinite;
+    font-family: 'VT323', monospace;
+    font-size: 1.2em;
+  }
+
+  .marquee-text:hover {
+    animation-play-state: paused;
+  }
+</style>

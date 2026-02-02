@@ -1,0 +1,100 @@
+---
+import ServiceCard from './ServiceCard.astro';
+import type { Service } from './ServiceCard.astro';
+
+interface Props {
+  services?: Service[];
+}
+
+const defaultServices: Service[] = [
+  {
+    number: '001',
+    name: '特別養護老人ホーム',
+    codeName: 'ETERNAL HAVEN',
+    description: '施設サービス計画に基づき、入浴、排泄、食事などの介護、その他日常生活上のお世話、健康管理および機能訓練などを行う。',
+    status: 'active',
+    href: '/stay',
+  },
+  {
+    number: '002',
+    name: 'ショートステイ',
+    codeName: 'TEMPORARY SANCTUARY',
+    description: '短期間の入所サービス。在宅介護の負担軽減と、利用者様の心身機能の維持向上を図る。',
+    status: 'active',
+    href: '/stay',
+  },
+  {
+    number: '003',
+    name: 'ユニット型',
+    codeName: 'HOME SWEET HOME',
+    description: '家庭的な雰囲気を大切にし、利用者様一人ひとりの個性や生活のリズムに沿ったケアを提供。ニーズを的確に把握した介護を行う。',
+    status: 'special',
+    href: '/unit',
+  },
+  {
+    number: '004',
+    name: 'デイサービス',
+    codeName: 'DAILY SMILE GENERATOR',
+    description: '理念である「愛の心」のもと、笑顔を忘れず、ともに楽しみ、ともに喜び合い、心のこもった介護・支援を常に心がける。',
+    status: 'active',
+    href: '/day',
+  },
+  {
+    number: '005',
+    name: '食事サービス',
+    codeName: 'NUTRITION MATRIX',
+    description: '何をどれだけ食べたかによって身体は変わる。食物のバランスをよく考え、健康的な生活を送っていただけるようなメニューを提供。',
+    status: 'active',
+    href: '/eat',
+  },
+  {
+    number: '006',
+    name: 'リハビリ（機能訓練）',
+    codeName: 'BODY RESTORATION SYSTEM',
+    description: '歩行訓練用平行棒・訓練用階段など設備も整っており、特養やユニット入所者のみならず、デイサービスやショートステイの利用者様にも対応。',
+    status: 'active',
+    href: '/rehabilitation',
+  },
+  {
+    number: '007',
+    name: '居宅介護支援事業所',
+    codeName: 'HOME CARE NAVIGATOR',
+    description: 'ケアマネジャーが利用者様のご自宅での介護を支援。ケアプランの作成から各種サービスの調整まで行う。',
+    status: 'active',
+    href: '/service',
+  },
+  {
+    number: '008',
+    name: 'イベント・行事',
+    codeName: 'JOY INJECTION PROTOCOL',
+    description: '利用者様に楽しんでいただくため、季節ごとの様々なイベントを開催。日々の生活に彩りを添える。',
+    status: 'special',
+    href: '/event',
+  },
+];
+
+const { services = defaultServices } = Astro.props;
+---
+
+<div class="panel" id="services">
+  <div class="panel-title">SERVICES - 未来介護ガジェット一覧</div>
+  <div class="service-grid">
+    {services.map((service) => (
+      <ServiceCard service={service} />
+    ))}
+  </div>
+</div>
+
+<style>
+  .service-grid {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 15px;
+  }
+
+  @media (max-width: 768px) {
+    .service-grid {
+      grid-template-columns: 1fr;
+    }
+  }
+</style>

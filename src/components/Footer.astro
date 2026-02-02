@@ -1,0 +1,54 @@
+---
+interface Props {
+  year?: number;
+  organizationName?: string;
+}
+
+const { 
+  year = new Date().getFullYear(),
+  organizationName = '柏原けやき苑'
+} = Astro.props;
+---
+
+<footer class="footer">
+  <div class="el-psy">El Psy Kongroo.</div>
+  <p>
+    当サイトはリンクフリーです。<br>
+    掲載の記事・写真・イラストなどの無断複写・転載を禁じます。
+  </p>
+  <p class="copyright">
+    Copyright &copy; {year} {organizationName} All Rights Reserved.<br>
+    社会福祉法人 丹波柏原福祉会<br>
+    Designed by Future Care Gadget Laboratory
+  </p>
+</footer>
+
+<style>
+  .footer {
+    text-align: center;
+    padding: 30px 0;
+    margin-top: 30px;
+    border-top: 1px dashed var(--primary-green);
+    font-size: 0.85em;
+    color: var(--text-dim);
+  }
+
+  .el-psy {
+    font-family: 'VT323', monospace;
+    font-size: 1.5em;
+    color: var(--primary-green);
+    text-shadow: var(--glow);
+    margin-bottom: 15px;
+    letter-spacing: 3px;
+  }
+
+  .footer p {
+    margin-bottom: 10px;
+    line-height: 1.6;
+  }
+
+  .copyright {
+    font-size: 0.9em;
+    margin-top: 15px;
+  }
+</style>
